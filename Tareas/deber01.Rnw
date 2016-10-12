@@ -1,0 +1,85 @@
+\documentclass[12pt,a4paper,oneside]{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb}
+\usepackage{pst-eucl,pstricks,pstricks-add}
+\usepackage[utf8]{inputenc}
+%\usepackage[latin1]{inputenc}
+\usepackage[spanish,activeacute]{babel}
+\usepackage[a4paper,margin=2cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{color}
+\usepackage{url}
+\usepackage{float}
+\usepackage{cite}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{float}
+\usepackage{rotating}
+
+\title{\bf Modelo Básico de Supervivencia}
+\author{Diego Paul Huaraca S}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{enumerate}
+% Ejercicio 1
+\item Sea:
+\[F_0(t) = 1- \left[1-\frac{t}{120}\right]^{1/6}, \quad \text{para} \quad 0\leq t \leq 120 \]
+\begin{enumerate}
+      \item Compruebe que se trata de una verdadera ley de supervivencia.
+      \begin{itemize}
+            \item Puesto que $S_0(0)=1-F_0(0)$, se tiene que:
+            \[S_0(0)=1-1+\left[1-\frac{0}{120}\right]^{1/6}=1\]
+            
+            \item Considerando que el máximo valor que $t$ puede tomar es 120, tenemos
+            \[\lim_{t\to +\infty} S_0(t)=\lim_{t\to +\infty} 1-F_0(t) = \lim_{t\to +\infty} \left[1-\frac{t}{120}\right]^{1/6}=\left[1-\frac{120}{120}\right]^{1/6}=0\]
+            
+            \item Verificamos que la función $S_0(t)$ es no creciente mediante el criterio de la primera derivada
+            \[\frac{d}{dx}S_0(t)=\frac{1}{6}\left(1-\frac{t}{120}\right)^{-5/6}\left(-\frac{1}{120}\right) = -\frac{1}{720\sqrt[6]{\left(1-\frac{t}{120}\right)^5}}\]
+            La última expresión pone de manifiesto que $\frac{d}{dx}S_0(t)<0$ para todo $0\leq t \leq 120$.\newline
+            
+            Dado que verifica las tres propiedades anteriores, podemos asegurar $F_0(t)$ es una ley de superviviencia.
+      \end{itemize}
+      
+      \item Calcule las siguientes probabilidades:
+      \begin{itemize}
+            \item Un recién nacido sobreviva a la edad de 35 años.
+            \[S_0(35)=1-F_0(35)=\left[1-\frac{35}{120}\right]^{1/6}=0.9441470\]
+            
+            \item Un individuo de 35 años de edad muera antes de los 60 años.
+            \[F_{35}(25)=\frac{F_0(60)-F_0(35)}{1-F_0(35)}=\frac{0.109101-0.055853}{1-0.055853}=0.056398\]
+            
+            \item Un individuo de 43 años de edad sobreviva a la edad de 74 años.
+            \[S_{43}(31)=\frac{S_0(74)}{S_0(43)}=\frac{0.852307}{0.928720}=0.917722\]
+      \end{itemize}
+      
+      \item Obtenga la expresión del tanto instantáneo de mortalidad.
+      \begin{align*}
+      \mu_x & = -\frac{1}{S_0(x)}.\frac{d}{dx}S_0(x)\\
+            & = -\frac{1}{\left(1-\frac{x}{120}\right)^{1/6}}.\frac{1}{6}\left[1-\frac{x}{120}\right]^{-5/6}.\left(-\frac{1}{120}\right)\\
+            & = \frac{1}{720\left(1-\frac{x}{120}\right)}\\
+            & = \frac{1}{6(120-x)}
+      \end{align*}
+\end{enumerate}
+
+% Ejercicio 2
+\item Sabiendo que un individuo, varón, tiene 40 años de edad:
+\begin{enumerate}
+      \item ?`Cuál es la probabilidad de que alcance la edad 41?
+      
+      \item ?`Y de que alcance la edad 45?
+      
+      \item Con los resultados anteriores, halle la probabilidad de que una persona de
+41 años viva 4 años más.
+
+      \item Verifique el resultado anterior suponiendo conocidos los valores $p_{39}$, $p_{40}$, ...
+$p_{50}$.
+
+      \item Sitúe sobre un gráfico las probabilidades $p_{40}$, $_5p_{40}$.
+\end{enumerate}
+
+
+\end{enumerate}
+
+\end{document}
