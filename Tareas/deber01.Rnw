@@ -15,6 +15,8 @@
 \usepackage{float}
 \usepackage{rotating}
 
+\newcommand{\nd}[3]{\mbox{$_{#1}\,\mbox{\textsf{\large #2}}\,_{#3}$}}
+
 \title{\bf Modelo Básico de Supervivencia}
 \author{Diego Paul Huaraca S}
 \date{\today}
@@ -67,16 +69,47 @@
 \item Sabiendo que un individuo, varón, tiene 40 años de edad:
 \begin{enumerate}
       \item ?`Cuál es la probabilidad de que alcance la edad 41?
+      \[p_{40}=\frac{l_{41}}{l_{40}}=\frac{964685.77}{966485.08}=0.998138\]
       
       \item ?`Y de que alcance la edad 45?
+      \[_5p_{40}=\frac{l_{45}}{l_{40}}=\frac{956120.09}{966485.08}=0.989276\]
       
       \item Con los resultados anteriores, halle la probabilidad de que una persona de
 41 años viva 4 años más.
+      \[_4p_{41}=\frac{_5p_{40}}{p_{40}}= \frac{0.989276}{0.998138} = 0.991121\]
 
       \item Verifique el resultado anterior suponiendo conocidos los valores $p_{39}$, $p_{40}$, ...
 $p_{50}$.
+      \begin{align*}
+      _4p_{41} & = p_{41}\times p_{42}\times p_{43} \times p_{44}\\
+               & = 0.998010 \times 0.997865 \times 0.997701 \times 0.997514\\
+               & = 0.991121
+      \end{align*}
 
       \item Sitúe sobre un gráfico las probabilidades $p_{40}$, $_5p_{40}$.
+      
+      \begin{figure}[H]
+      \centering
+      \psset{unit=1.3}
+      \begin{pspicture}[showgrid=false](5,2.4)
+      \psframe[fillstyle=solid,fillcolor=gray!20,linecolor=white](-0.5,-0.3)(5.5,2.4)
+      \pstGeonode[PointName=none,PointSymbol=*]
+                 (0,1){A}(5,1){B}(3,1){C}
+      \pstLineAB[linewidth=1.5pt,linecolor=cyan!80]{A}{B}
+      \nccurve[angleA=35,angleB=145,linecolor=magenta!60]{<->}{A}{B}
+      \nccurve[angleA=-35,angleB=215,linecolor=blue!80]{<->}{A}{C}
+      \nccurve[angleA=-40,angleB=220,linecolor=red!90]{<->}{C}{B}
+      \rput(2.5,2){$\nd{5}{p}{40}$}
+      \rput(0,0.7){\small $40$}
+      \rput(3,0.7){\small $41$}
+      \rput(5.1,0.7){\small $45$}
+      \rput(1.5,0.3){$\nd{}{p}{40}$}
+      \rput(4,0.3){$\nd{4}{p}{41}$}
+      \end{pspicture}
+      \label{fig:01}
+      \caption{Probabilidades de supervivencia}
+      \end{figure}
+
 \end{enumerate}
 
 
