@@ -109,10 +109,57 @@ $p_{50}$.
       \label{fig:01}
       \caption{Probabilidades de supervivencia}
       \end{figure}
-
 \end{enumerate}
 
+\item Conteste a los siguientes apartados:
+\begin{enumerate}
+      \item Halle la probabilidad de que una mujer de 40 años de edad no alcance la edad 41.
+      \[q_{40}=1-p_{40}=\frac{l_{40}-l_{41}}{l_{40}}= \frac{986000.90 - 984933.85}{986000.90}=0.001082\]
+      
+      \item Halle la probabilidad de que una mujer de 40 años de edad fallezca a los 45 años.
+      \[_5q_{40}=1-_5p_{40}=\frac{l_{40}-l_{45}}{l_{40}}=\frac{986000.90-980162.85}{986000.90}=0.005921\]
+      
+      \item Halle la probabilidad de que una mujer de 40 años de edad no alcance la edad 45, que fallezca en los próximos 5 años.
+      
+      \item Verifique el resultado anterior suponiendo conocidos los valores: $q_{40}$, $_{1|}q_{40}$,..., $_{4|}q_{40}$.
+      
+      \item Conocido $_{3}p_{40}$ y $q_{43}$. Halle $_{3|}q_{40}$.
+      
+      \item Halle $_{3|}q_{40}$ conociendo $p_{40}$, $_{2}p_{40}$,..., $_{5}p_{40}$.
+      
+      \item Sitúe sobre un gráfico las siguientes probabilidades: $q_{40}$, $q_{41}$, $_{|4}q_{40}$, $_{|5}q_{41}$.
+      
+      \item Sitúe sobre un gráfico las siguientes probabilidades: $_{1|}q_{40}$, $_{2|}q_{40}$, $_{3|}q_{40}$, $_{1|}q_{41}$, $_{2|}q_{41}$, $_{3|}q_{41}$.
+      
+      \item Explique la diferencia entre $_{2|}q_{40}$ y $_{1|}q_{41}$.
+      
+\end{enumerate}
 
+% Ejercicio 4
+\item Calcule para un varón las siguientes probabilidades utilizando las tres aproximaciones vistas en clase:
+\begin{enumerate}
+      \item $_{0.8}p_{30}$
+      
+      \item $_{0.8}q_{30}$
+      
+      \item $_{10.4}p_{30.2}$
+      
+      \item $_{10.4}q_{30.2}$
+      
+\end{enumerate}
+
+% Ejercicio 5
+\item Calcule $\mu_{33}$, $_{5}p_{30}$ y $_{7}q_{45}$ si el modelo de mortalidad se corresponde con:
+\begin{enumerate}
+      \item La ley de Moivre con parámetro $\omega=120$
+      
+      \item La ley de Gompertz con parámetros $B=0.05$ y $C=1.01$
+      
+      \item La ley de Makehan con parámetros $A = 0.05$, $B = 0.01$ y $C = 1.02$
+      
+      \item La ley de Weibull con parámetros $k=0.01$ y $n=0.5$
+      
+\end{enumerate}
 \end{enumerate}
 
 \end{document}
