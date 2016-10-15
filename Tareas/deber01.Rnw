@@ -4,7 +4,7 @@
 \usepackage[utf8]{inputenc}
 %\usepackage[latin1]{inputenc}
 \usepackage[spanish,activeacute]{babel}
-\usepackage[a4paper,margin=2cm]{geometry}
+\usepackage[a4paper,margin=1.8cm]{geometry}
 \usepackage[T1]{fontenc}
 \usepackage{color}
 \usepackage{url}
@@ -92,18 +92,18 @@ $p_{50}$.
       \centering
       \psset{unit=1.3}
       \begin{pspicture}[showgrid=false](5,2.4)
-      \psframe[fillstyle=solid,fillcolor=gray!20,linecolor=white](-0.5,-0.3)(5.5,2.4)
+      \psframe[fillstyle=solid,fillcolor=gray!15,linecolor=white](-0.5,-0.3)(5.5,2.4)
       \pstGeonode[PointName=none,PointSymbol=*]
-                 (0,1){A}(5,1){B}(3,1){C}
+                 (0,1){A}(5,1){B}(2,1){C}
       \pstLineAB[linewidth=1.5pt,linecolor=cyan!80]{A}{B}
       \nccurve[angleA=35,angleB=145,linecolor=magenta!60]{<->}{A}{B}
       \nccurve[angleA=-35,angleB=215,linecolor=blue!80]{<->}{A}{C}
       \nccurve[angleA=-40,angleB=220,linecolor=red!90]{<->}{C}{B}
       \rput(2.5,2){$\nd{5}{p}{40}$}
       \rput(0,0.7){\small $40$}
-      \rput(3,0.7){\small $41$}
+      \rput(2,0.7){\small $41$}
       \rput(5.1,0.7){\small $45$}
-      \rput(1.5,0.3){$\nd{}{p}{40}$}
+      \rput(1,0.3){$\nd{}{p}{40}$}
       \rput(4,0.3){$\nd{4}{p}{41}$}
       \end{pspicture}
       \label{fig:01}
@@ -117,17 +117,73 @@ $p_{50}$.
       \[q_{40}=1-p_{40}=\frac{l_{40}-l_{41}}{l_{40}}= \frac{986000.90 - 984933.85}{986000.90}=0.001082\]
       
       \item Halle la probabilidad de que una mujer de 40 años de edad fallezca a los 45 años.
-      \[_5q_{40}=1-_5p_{40}=\frac{l_{40}-l_{45}}{l_{40}}=\frac{986000.90-980162.85}{986000.90}=0.005921\]
+      \[_{5|1}q_{40}=_{5}p_{40}\times q_{45}=\frac{l_{45}}{l_{40}}\left[\frac{l_{45}-l_{46}}{l_{45}}\right] = \frac{980162.85}{986000.90}\left[\frac{980162.85-978841.20}{980162.85}\right] = 0.001340\]
       
       \item Halle la probabilidad de que una mujer de 40 años de edad no alcance la edad 45, que fallezca en los próximos 5 años.
+      \[_5q_{40}=1-_5p_{40}=\frac{l_{40}-l_{45}}{l_{40}}=\frac{986000.90-980162.85}{986000.90}=0.005921\]
       
       \item Verifique el resultado anterior suponiendo conocidos los valores: $q_{40}$, $_{1|}q_{40}$,..., $_{4|}q_{40}$.
+      \begin{align*}
+      _5q_{40} & = q_{40} +  _{1|}q_{40} + _{2|}q_{40} + _{3|}q_{40} + _{4|}q_{40}\\
+               & = \left[\frac{l_{40}-l_{41}}{l_{40}}\right] + \left[\frac{l_{41}-l_{42}}{l_{40}}\right] + \left[\frac{l_{42}-l_{43}}{l_{40}}\right] + \left[\frac{l_{43}-l_{44}}{l_{40}}\right] + \left[\frac{l_{44}-l_{45}}{l_{40}}\right] \\
+               & = \frac{l_{40}-l_{45}}{l_{40}}\\
+               & = \frac{986000.90-980162.85}{986000.90}\\
+               & = 0.005921
+      \end{align*}
       
       \item Conocido $_{3}p_{40}$ y $q_{43}$. Halle $_{3|}q_{40}$.
+      \[_{3|}q_{40} = q_{43}\times _{3}p_{40}= \left[\frac{l_{43}-l_{44}}{l_{43}}\right]\frac{l_{43}}{l_{40}} = \frac{l_{43}-l_{44}}{l_{40}} = \frac{982646.20-981429.29}{986000.90}= 0.001234\]
       
       \item Halle $_{3|}q_{40}$ conociendo $p_{40}$, $_{2}p_{40}$,..., $_{5}p_{40}$.
+      \[_{3|}q_{40} = _{3}p_{40} - _{4}p_{40} = \frac{l_{43}}{l_{40}} - \frac{l_{44}}{l_{40}}= \frac{982646.20}{986000.90} - \frac{981429.29}{986000.90}= 0.001234\]
       
       \item Sitúe sobre un gráfico las siguientes probabilidades: $q_{40}$, $q_{41}$, $_{|4}q_{40}$, $_{|5}q_{41}$.
+      
+      \begin{figure}[H]
+      \centering
+      \psset{unit=1.0}
+      \begin{pspicture}[showgrid=false](-1,0.7)(12,3.5)
+      \psframe[fillstyle=solid,fillcolor=gray!15,linecolor=white](-1,0.4)(12.3,3.8)
+      % q40
+      \psline[linewidth=1.5pt]{<->}(0,3)(4,3)
+      \psline[linewidth=1pt]{|-|}(1,3)(3,3)
+      \psline[linecolor=blue, linewidth=1.2pt]{<-o}(0,3.3)(1,3.3)
+      \psline[linecolor=red, linewidth=1.2pt]{*-o}(1,3.5)(3,3.5)
+      \rput(1,2.7){\scriptsize 40}
+      \rput(3,2.7){\scriptsize 41}
+      \rput(-0.5,3){\scriptsize $q_{40}$}
+      % q41
+      \psline[linewidth=1.5pt]{<->}(0,1)(4,1)
+      \psline[linewidth=1pt]{|-|}(1,1)(3,1)
+      \psline[linecolor=blue, linewidth=1.2pt]{<-o}(0,1.3)(1,1.3)
+      \psline[linecolor=red, linewidth=1.2pt]{*-o}(1,1.5)(3,1.5)
+      \rput(1,0.7){\scriptsize 41}
+      \rput(3,0.7){\scriptsize 42}
+      \rput(-0.5,1){\scriptsize $q_{41}$}
+      % |4q40
+      \psline[linewidth=1.5pt]{<->}(7,3)(12,3)
+      \psline[linewidth=1pt]{|-|}(8,3)(9,3)
+      \psline[linewidth=1pt]{-|}(9,3)(11,3)
+      \psline[linecolor=blue, linewidth=1.2pt]{<-o}(7,3.3)(9,3.3)
+      \psline[linecolor=red, linewidth=1.2pt]{*-o}(9,3.5)(11,3.5)
+      \rput(6.5,3){\scriptsize $_{|4}q_{40}$}
+      \rput(8,2.7){\scriptsize 40}
+      \rput(9,2.7){\scriptsize 41}
+      \rput(11,2.7){\scriptsize 45}
+      % |5q41
+      \psline[linewidth=1.5pt]{<->}(7,1)(12,1)
+      \psline[linewidth=1pt]{|-|}(8,1)(9,1)
+      \psline[linewidth=1pt]{-|}(9,1)(11,1)
+      \psline[linecolor=blue, linewidth=1.2pt]{<-o}(7,1.3)(9,1.3)
+      \psline[linecolor=red, linewidth=1.2pt]{*-o}(9,1.5)(11,1.5)
+      \rput(6.5,1){\scriptsize $_{|5}q_{41}$}
+      \rput(8,0.7){\scriptsize 41}
+      \rput(9,0.7){\scriptsize 42}
+      \rput(11,0.7){\scriptsize 47}
+      \end{pspicture}
+      \label{fig:02}
+      \caption{Probabilidades de muerte}
+      \end{figure}
       
       \item Sitúe sobre un gráfico las siguientes probabilidades: $_{1|}q_{40}$, $_{2|}q_{40}$, $_{3|}q_{40}$, $_{1|}q_{41}$, $_{2|}q_{41}$, $_{3|}q_{41}$.
       
