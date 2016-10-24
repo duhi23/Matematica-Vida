@@ -145,6 +145,7 @@ $p_{50}$.
       \begin{pspicture}[showgrid=false](-1,0.7)(12,3.5)
       \psframe[fillstyle=solid,fillcolor=gray!15,linecolor=white](-1,0.4)(12.3,3.8)
       % q40
+      %\psframe[linecolor=white, fillstyle=crosshatch, hatchcolor=red, hatchwidth=0.6pt, hatchsep=6pt](1,3)(3,3.5)
       \psline[linewidth=1.5pt]{<->}(0,3)(4,3)
       \psline[linewidth=1pt]{|-|}(1,3)(3,3)
       \psline[linecolor=blue, linewidth=1.2pt]{<-o}(0,3.3)(1,3.3)
@@ -153,6 +154,7 @@ $p_{50}$.
       \rput(3,2.7){\scriptsize 41}
       \rput(-0.5,3){\scriptsize $q_{40}$}
       % q41
+      %\psframe[linecolor=white, fillstyle=crosshatch, hatchcolor=red, hatchwidth=0.6pt, hatchsep=6pt](1,1)(3,1.5)
       \psline[linewidth=1.5pt]{<->}(0,1)(4,1)
       \psline[linewidth=1pt]{|-|}(1,1)(3,1)
       \psline[linecolor=blue, linewidth=1.2pt]{<-o}(0,1.3)(1,1.3)
@@ -187,8 +189,42 @@ $p_{50}$.
       
       \item Sitúe sobre un gráfico las siguientes probabilidades: $_{1|}q_{40}$, $_{2|}q_{40}$, $_{3|}q_{40}$, $_{1|}q_{41}$, $_{2|}q_{41}$, $_{3|}q_{41}$.
       
+      \begin{figure}[H]
+      \centering
+      \psset{unit=1.0}
+      \begin{pspicture}[showgrid=false](-1,0.5)(12,1.5)
+      %\psframe[fillstyle=solid,fillcolor=gray!15,linecolor=white](-1,0.4)(12.3,3.8)
+      % 1|q40
+      \psline[linewidth=1.5pt]{<->}(0,1)(4,1)
+      \psline[linewidth=1pt]{|-|}(1,1)(2,1)
+      \psline[linewidth=1pt]{-|}(2,1)(3,1)
+      \psline[linecolor=blue, linewidth=1.2pt]{<-o}(0,1.3)(2,1.3)
+      \psline[linecolor=red, linewidth=1.2pt]{*-o}(2,1.5)(3,1.5)
+      \rput(1,0.7){\scriptsize 40}
+      \rput(2,0.7){\scriptsize 41}
+      \rput(3,0.7){\scriptsize 42}
+      \rput(-0.5,1){\scriptsize $_{1|}q_{40}$}
+      % 2|q40
+      \psline[linewidth=1.5pt]{<->}(7,1)(12,1)
+      \psline[linewidth=1pt]{|-|}(8,1)(9,1)
+      \psline[linewidth=1pt]{|-|}(10,1)(11,1)
+      \psline[linecolor=blue, linewidth=1.2pt]{<-o}(7,1.3)(10,1.3)
+      \psline[linecolor=red, linewidth=1.2pt]{*-o}(10,1.5)(11,1.5)
+      \rput(8,0.7){\scriptsize 40}
+      \rput(9,0.7){\scriptsize 41}
+      \rput(10,0.7){\scriptsize 42}
+      \rput(11,0.7){\scriptsize 43}
+      \rput(6.5,1){\scriptsize $_{2|}q_{40}$}
+      \end{pspicture}
+      \end{figure}
+      
       \item Explique la diferencia entre $_{2|}q_{40}$ y $_{1|}q_{41}$.
       
+      $_{2|}q_{40}$: Probabilidad de fallecimiento entre las edades de 42 y 43 años para un individuo de 40 años de edad.\\
+      
+      $_{1|}q_{41}$: Probabilidad de fallecimiento entre las edades de 42 y 43 años para un individuo de 41 años de edad.\\
+      
+      La principal diferencia radica en la edad del sujeto, para el primer caso le resta sobrevivir dos periodos (años) antes de su fallecimiento, mientras que para el segundo caso únicamente le resta un periodo.
 \end{enumerate}
 
 % Ejercicio 4
@@ -196,12 +232,47 @@ $p_{50}$.
 \begin{enumerate}
       \item $_{0.8}p_{30}$
       
+      {\bf\scriptsize \ttfamily Hipótesis de uniformidad}
+      \[_{0.8}p_{30} = 1- _{0.8}q_{30} = 1-0.8q_{30}=1-0.8(0.001306)=0.998955\]
+      
+      {\bf\scriptsize \ttfamily Hipótesis tanto instantáneo de mortalidad constante}
+      \[_{0.8}p_{30} = (1-q_{30})^{0.8}=(1-0.001306)^{0.8}=0.998955\]
+      
+      {\bf\scriptsize \ttfamily Hipótesis de Balducci}
+      \[_{0.8}p_{30} = \frac{1-q_{30}}{1-(1-0.8)q_{30}}=\frac{1-0.001306}{1-0.2(0.001306)}=0.998955\]
+      
       \item $_{0.8}q_{30}$
       
+      Tomando en cuenta los resultados del item anterior podemos obtener $_{0.8}q_{30}$ como:
+      \[ _{0.8}q_{30}= 1- _{0.8}p_{30}\]
+
       \item $_{10.4}p_{30.2}$
+      
+      {\bf\scriptsize \ttfamily Hipótesis de uniformidad}
+      \begin{align*} 
+      _{10.4}p_{30.2} & = _{0.8}p_{30.2}\times _{9}p_{31}\times _{0.6}p_{40} \\
+                      & = \left[\frac{1-(0.2+0.8)q_{30}}{1-0.2q_{30}}\right] \times \frac{l_{40}}{l_{31}} \times \left[1-0.6q_{40}\right]\\
+                      & = \frac{1-0.001306}{1-0.2(0.001306)}\times \frac{966485.08}{979457.28} \times (1-0.6(0.001862))\\
+                      & =  0.998955 \times 0.986756 \times 0.998883\\
+                      & = 0.984624
+      \end{align*}
+      
+      {\bf\scriptsize \ttfamily Hipótesis tanto instantáneo de mortalidad constante}
+      \[_{10.4}p_{30.2} = (p_{30})^{10.4}=(1-0.001306)^{10.4}=0.986504\]
+      
+      {\bf\scriptsize \ttfamily Hipótesis de Balducci}
+      \begin{align*} 
+      _{10.4}p_{30.2} & = _{0.8}p_{30.2}\times _{9}p_{31}\times _{0.6}p_{40} \\
+                      & = \left[1-\frac{0.8q_{30}}{1-(1-08-0.2)q_{30}}\right]\times \frac{l_{40}}{l_{31}}\times \frac{1-q_{30}}{1-(1-0.6)q_{30}}\\
+                      & = \left[1-0.8(0.001306)\right]\times \frac{966485.08}{979457.28} \times \frac{1-0.001306}{1-0.4(0.001306)}\\
+                      & =  (1-0.001045) \times 0.986756 \times 0.999216\\
+                      & =  0.984952
+      \end{align*}
       
       \item $_{10.4}q_{30.2}$
       
+      Tomando en cuenta los resultados del item anterior podemos obtener $_{10.4}q_{30.2}$ como:
+      \[ _{10.4}q_{30.2}= 1- _{10.4}p_{30.2}\]
 \end{enumerate}
 
 % Ejercicio 5
@@ -209,12 +280,31 @@ $p_{50}$.
 \begin{enumerate}
       \item La ley de Moivre con parámetro $\omega=120$
       
+      Puesto que $\mu_x=\frac{1}{w-x}$, tenemos lo siguiente:
+      \[\mu_{33}=\frac{1}{120-33}=\frac{1}{87}=0.011494\]
+      \[_{5}p_{30}=1-\frac{5}{120-30}=\frac{85}{90}=0.944444\]
+      \[_{7}q_{45}=1-_{7}p_{45}=\frac{7}{120-45}=\frac{7}{75}=0.093333\]
+      
       \item La ley de Gompertz con parámetros $B=0.05$ y $C=1.01$
+      
+      Dado que $\mu_x=BC^x$, se tiene lo siguiente:
+      \[\mu_{33}=(0.05)(1.01)^{33}=0.069434\]
+      \[_{5}p_{30}=\exp\left[-\frac{0.05}{\ln 1.01}(1.01)^{30}(1.01^5-1)\right]=0.707877\]
+      \[_{7}q_{45}=1-_{7}p_{45}=1-\exp\left[-\frac{0.05}{\ln 1.01}(1.01)^{45}(1.01^7-1)\right]=0.432893\]
       
       \item La ley de Makehan con parámetros $A = 0.05$, $B = 0.01$ y $C = 1.02$
       
+      Puesto que $\mu_x = A + BC^x$, obtenemos lo siguiente:
+      \[\mu_{33}=(0.05)+(0.01)(1.02)^{33}=0.069222\]
+      \[_{5}p_{30}=\exp\left[-(0.05)(5)-\frac{0.01}{\ln 1.02}(1.02)^{30}(1.02^5-1)\right]=0.708076\]
+      \[_{7}q_{45}= 1-_{7}p_{45}=\exp\left[-(0.05)(7)-\frac{0.01}{\ln 1.02}(1.02)^{45}(1.02^7-1)\right]=0.413184\]
+      
       \item La ley de Weibull con parámetros $k=0.01$ y $n=0.5$
       
+      Dado que $\mu_x = kx^n$, se tiene lo siguiente:
+      \[\mu_{33} = (0.01)(33)^{0.5}=0.057446\]
+      \[_{5}p_{30} = \exp\left[-\frac{0.01}{1.5}\left(35^{1.5}-30^{1.5}\right)\right]=0.752034\]
+      \[_{7}q_{45} = 1-_{7}p_{45}= 1- \exp\left[-\frac{0.01}{1.5}\left(52^{1.5}-45^{1.5}\right)\right] = 0.385771 \]
 \end{enumerate}
 \end{enumerate}
 
