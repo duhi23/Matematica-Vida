@@ -39,4 +39,21 @@ nEx <- function(edad, periodo, interes, genero){
       return(tpx(edad, periodo, genero)*(1+interes)^(-periodo))
 }
 
+# Seguro de vida temporal
+A1xn <- function(edad, omega, interes, genero){
+      suma=0
+      for(i in 0:(omega-1)){
+         suma = suma + utqx(edad,k,1,genero)*(1+interes)^(-periodo)   
+      }
+      return(suma)
+}
 
+# Seguro de supervivencia
+Axn1 <- function(edad, periodo, interes, genero){
+      return(nEx(edad, periodo, interes, genero))
+}
+
+# Seguro Mixto
+Ax <- function(edad, periodo, interes, genero){
+      return()
+}
