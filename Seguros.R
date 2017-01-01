@@ -29,3 +29,14 @@ tqx <- function(edad, salto, genero){
       return(1-(lx(edad+salto, genero)/lx(edad,genero)))
 }
 
+# Probabilidad de muerte diferida
+utqx <- function(edad, inicio, salto, genero){
+      return(tqx(edad, inicio + salto, genero)- tqx(edad, inicio, genero))
+}
+
+# Factor financiero - actuarial
+nEx <- function(edad, periodo, interes, genero){
+      return(tpx(edad, periodo, genero)*(1+interes)^(-periodo))
+}
+
+
