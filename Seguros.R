@@ -1,6 +1,6 @@
-###################################################
-#####     Seguros de vida y supervivencia     #####
-###################################################
+#########################################################
+#######   Funciones de Probabilidades - Seguros   #######
+#########################################################
 
 library("readxl")
 library("dplyr")
@@ -55,5 +55,9 @@ Axn1 <- function(edad, periodo, interes, genero){
 
 # Seguro Mixto
 Ax <- function(edad, periodo, interes, genero){
-      return()
+      return(A1xn(edad, periodo, interes, genero) + Axn1(edad, periodo, interes, genero))
 }
+
+
+
+
