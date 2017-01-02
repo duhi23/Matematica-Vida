@@ -5,7 +5,9 @@
 library("readxl")
 library("dplyr")
 
+# Lectura tabla de mortalidad
 tabla <- read_excel("TablaMortalidad.xlsx", sheet = 1, col_names = FALSE)
+# Nombres columnas
 colnames(tabla) <- c("years", "days", "lx", "ly")
 
 
@@ -58,6 +60,4 @@ Ax <- function(edad, periodo, interes, genero){
       return(A1xn(edad, periodo, interes, genero) + Axn1(edad, periodo, interes, genero))
 }
 
-
-
-
+# 
