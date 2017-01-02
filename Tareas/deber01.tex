@@ -1,0 +1,360 @@
+\documentclass[12pt,a4paper,oneside]{article}\usepackage[]{graphicx}\usepackage[]{color}
+%% maxwidth is the original width if it is less than linewidth
+%% otherwise use linewidth (to make sure the graphics do not exceed the margin)
+\makeatletter
+\def\maxwidth{ %
+  \ifdim\Gin@nat@width>\linewidth
+    \linewidth
+  \else
+    \Gin@nat@width
+  \fi
+}
+\makeatother
+
+\definecolor{fgcolor}{rgb}{0.345, 0.345, 0.345}
+\newcommand{\hlnum}[1]{\textcolor[rgb]{0.686,0.059,0.569}{#1}}%
+\newcommand{\hlstr}[1]{\textcolor[rgb]{0.192,0.494,0.8}{#1}}%
+\newcommand{\hlcom}[1]{\textcolor[rgb]{0.678,0.584,0.686}{\textit{#1}}}%
+\newcommand{\hlopt}[1]{\textcolor[rgb]{0,0,0}{#1}}%
+\newcommand{\hlstd}[1]{\textcolor[rgb]{0.345,0.345,0.345}{#1}}%
+\newcommand{\hlkwa}[1]{\textcolor[rgb]{0.161,0.373,0.58}{\textbf{#1}}}%
+\newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
+\newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
+\newcommand{\hlkwd}[1]{\textcolor[rgb]{0.737,0.353,0.396}{\textbf{#1}}}%
+
+\usepackage{framed}
+\makeatletter
+\newenvironment{kframe}{%
+ \def\at@end@of@kframe{}%
+ \ifinner\ifhmode%
+  \def\at@end@of@kframe{\end{minipage}}%
+  \begin{minipage}{\columnwidth}%
+ \fi\fi%
+ \def\FrameCommand##1{\hskip\@totalleftmargin \hskip-\fboxsep
+ \colorbox{shadecolor}{##1}\hskip-\fboxsep
+     % There is no \\@totalrightmargin, so:
+     \hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
+ \MakeFramed {\advance\hsize-\width
+   \@totalleftmargin\z@ \linewidth\hsize
+   \@setminipage}}%
+ {\par\unskip\endMakeFramed%
+ \at@end@of@kframe}
+\makeatother
+
+\definecolor{shadecolor}{rgb}{.97, .97, .97}
+\definecolor{messagecolor}{rgb}{0, 0, 0}
+\definecolor{warningcolor}{rgb}{1, 0, 1}
+\definecolor{errorcolor}{rgb}{1, 0, 0}
+\newenvironment{knitrout}{}{} % an empty environment to be redefined in TeX
+
+\usepackage{alltt}
+\usepackage{amsmath,amsthm,amsfonts,amssymb}
+\usepackage{pst-eucl,pstricks,pstricks-add}
+\usepackage[utf8]{inputenc}
+%\usepackage[latin1]{inputenc}
+\usepackage[spanish,activeacute]{babel}
+\usepackage[a4paper,margin=1.8cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{color}
+\usepackage{url}
+\usepackage{float}
+\usepackage{cite}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{float}
+\usepackage{rotating}
+
+\newcommand{\nd}[3]{\mbox{$_{#1}\,\mbox{\textsf{\large #2}}\,_{#3}$}}
+
+\title{\bf Modelo Básico de Supervivencia}
+\author{Diego Paul Huaraca S}
+\date{\today}
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\begin{document}
+\maketitle
+
+\begin{enumerate}
+% Ejercicio 1
+\item Sea:
+\[F_0(t) = 1- \left[1-\frac{t}{120}\right]^{1/6}, \quad \text{para} \quad 0\leq t \leq 120 \]
+\begin{enumerate}
+      \item Compruebe que se trata de una verdadera ley de supervivencia.
+      \begin{itemize}
+            \item Puesto que $S_0(0)=1-F_0(0)$, se tiene que:
+            \[S_0(0)=1-1+\left[1-\frac{0}{120}\right]^{1/6}=1\]
+            
+            \item Considerando que el máximo valor que $t$ puede tomar es 120, tenemos
+            \[\lim_{t\to +\infty} S_0(t)=\lim_{t\to +\infty} 1-F_0(t) = \lim_{t\to +\infty} \left[1-\frac{t}{120}\right]^{1/6}=\left[1-\frac{120}{120}\right]^{1/6}=0\]
+            
+            \item Verificamos que la función $S_0(t)$ es no creciente mediante el criterio de la primera derivada
+            \[\frac{d}{dx}S_0(t)=\frac{1}{6}\left(1-\frac{t}{120}\right)^{-5/6}\left(-\frac{1}{120}\right) = -\frac{1}{720\sqrt[6]{\left(1-\frac{t}{120}\right)^5}}\]
+            La última expresión pone de manifiesto que $\frac{d}{dx}S_0(t)<0$ para todo $0\leq t \leq 120$.\newline
+            
+            Dado que verifica las tres propiedades anteriores, podemos asegurar $F_0(t)$ es una ley de superviviencia.
+      \end{itemize}
+      
+      \item Calcule las siguientes probabilidades:
+      \begin{itemize}
+            \item Un recién nacido sobreviva a la edad de 35 años.
+            \[S_0(35)=1-F_0(35)=\left[1-\frac{35}{120}\right]^{1/6}=0.9441470\]
+            
+            \item Un individuo de 35 años de edad muera antes de los 60 años.
+            \[F_{35}(25)=\frac{F_0(60)-F_0(35)}{1-F_0(35)}=\frac{0.109101-0.055853}{1-0.055853}=0.056398\]
+            
+            \item Un individuo de 43 años de edad sobreviva a la edad de 74 años.
+            \[S_{43}(31)=\frac{S_0(74)}{S_0(43)}=\frac{0.852307}{0.928720}=0.917722\]
+      \end{itemize}
+      
+      \item Obtenga la expresión del tanto instantáneo de mortalidad.
+      \begin{align*}
+      \mu_x & = -\frac{1}{S_0(x)}.\frac{d}{dx}S_0(x)\\
+            & = -\frac{1}{\left(1-\frac{x}{120}\right)^{1/6}}.\frac{1}{6}\left[1-\frac{x}{120}\right]^{-5/6}.\left(-\frac{1}{120}\right)\\
+            & = \frac{1}{720\left(1-\frac{x}{120}\right)}\\
+            & = \frac{1}{6(120-x)}
+      \end{align*}
+\end{enumerate}
+
+% Ejercicio 2
+\item Sabiendo que un individuo, varón, tiene 40 años de edad:
+\begin{enumerate}
+      \item ?`Cuál es la probabilidad de que alcance la edad 41?
+      \[p_{40}=\frac{l_{41}}{l_{40}}=\frac{964685.77}{966485.08}=0.998138\]
+      
+      \item ?`Y de que alcance la edad 45?
+      \[_5p_{40}=\frac{l_{45}}{l_{40}}=\frac{956120.09}{966485.08}=0.989276\]
+      
+      \item Con los resultados anteriores, halle la probabilidad de que una persona de
+41 años viva 4 años más.
+      \[_4p_{41}=\frac{_5p_{40}}{p_{40}}= \frac{0.989276}{0.998138} = 0.991121\]
+
+      \item Verifique el resultado anterior suponiendo conocidos los valores $p_{39}$, $p_{40}$, ...
+$p_{50}$.
+      \begin{align*}
+      _4p_{41} & = p_{41}\times p_{42}\times p_{43} \times p_{44}\\
+               & = 0.998010 \times 0.997865 \times 0.997701 \times 0.997514\\
+               & = 0.991121
+      \end{align*}
+
+      \item Sitúe sobre un gráfico las probabilidades $p_{40}$, $_5p_{40}$.
+      
+      \begin{figure}[H]
+      \centering
+      \psset{unit=1.3}
+      \begin{pspicture}[showgrid=false](5,2.4)
+      \psframe[fillstyle=solid,fillcolor=gray!15,linecolor=white](-0.5,-0.3)(5.5,2.4)
+      \pstGeonode[PointName=none,PointSymbol=*]
+                 (0,1){A}(5,1){B}(2,1){C}
+      \pstLineAB[linewidth=1.5pt,linecolor=cyan!80]{A}{B}
+      \nccurve[angleA=35,angleB=145,linecolor=magenta!60]{<->}{A}{B}
+      \nccurve[angleA=-35,angleB=215,linecolor=blue!80]{<->}{A}{C}
+      \nccurve[angleA=-40,angleB=220,linecolor=red!90]{<->}{C}{B}
+      \rput(2.5,2){$\nd{5}{p}{40}$}
+      \rput(0,0.7){\small $40$}
+      \rput(2,0.7){\small $41$}
+      \rput(5.1,0.7){\small $45$}
+      \rput(1,0.3){$\nd{}{p}{40}$}
+      \rput(4,0.3){$\nd{4}{p}{41}$}
+      \end{pspicture}
+      \label{fig:01}
+      \caption{Probabilidades de supervivencia}
+      \end{figure}
+\end{enumerate}
+
+\item Conteste a los siguientes apartados:
+\begin{enumerate}
+      \item Halle la probabilidad de que una mujer de 40 años de edad no alcance la edad 41.
+      \[q_{40}=1-p_{40}=\frac{l_{40}-l_{41}}{l_{40}}= \frac{986000.90 - 984933.85}{986000.90}=0.001082\]
+      
+      \item Halle la probabilidad de que una mujer de 40 años de edad fallezca a los 45 años.
+      \[_{5|1}q_{40}=_{5}p_{40}\times q_{45}=\frac{l_{45}}{l_{40}}\left[\frac{l_{45}-l_{46}}{l_{45}}\right] = \frac{980162.85}{986000.90}\left[\frac{980162.85-978841.20}{980162.85}\right] = 0.001340\]
+      
+      \item Halle la probabilidad de que una mujer de 40 años de edad no alcance la edad 45, que fallezca en los próximos 5 años.
+      \[_5q_{40}=1-_5p_{40}=\frac{l_{40}-l_{45}}{l_{40}}=\frac{986000.90-980162.85}{986000.90}=0.005921\]
+      
+      \item Verifique el resultado anterior suponiendo conocidos los valores: $q_{40}$, $_{1|}q_{40}$,..., $_{4|}q_{40}$.
+      \begin{align*}
+      _5q_{40} & = q_{40} +  _{1|}q_{40} + _{2|}q_{40} + _{3|}q_{40} + _{4|}q_{40}\\
+               & = \left[\frac{l_{40}-l_{41}}{l_{40}}\right] + \left[\frac{l_{41}-l_{42}}{l_{40}}\right] + \left[\frac{l_{42}-l_{43}}{l_{40}}\right] + \left[\frac{l_{43}-l_{44}}{l_{40}}\right] + \left[\frac{l_{44}-l_{45}}{l_{40}}\right] \\
+               & = \frac{l_{40}-l_{45}}{l_{40}}\\
+               & = \frac{986000.90-980162.85}{986000.90}\\
+               & = 0.005921
+      \end{align*}
+      
+      \item Conocido $_{3}p_{40}$ y $q_{43}$. Halle $_{3|}q_{40}$.
+      \[_{3|}q_{40} = q_{43}\times _{3}p_{40}= \left[\frac{l_{43}-l_{44}}{l_{43}}\right]\frac{l_{43}}{l_{40}} = \frac{l_{43}-l_{44}}{l_{40}} = \frac{982646.20-981429.29}{986000.90}= 0.001234\]
+      
+      \item Halle $_{3|}q_{40}$ conociendo $p_{40}$, $_{2}p_{40}$,..., $_{5}p_{40}$.
+      \[_{3|}q_{40} = _{3}p_{40} - _{4}p_{40} = \frac{l_{43}}{l_{40}} - \frac{l_{44}}{l_{40}}= \frac{982646.20}{986000.90} - \frac{981429.29}{986000.90}= 0.001234\]
+      
+      \item Sitúe sobre un gráfico las siguientes probabilidades: $q_{40}$, $q_{41}$, $_{|4}q_{40}$, $_{|5}q_{41}$.
+      
+      \begin{figure}[H]
+      \centering
+      \psset{unit=1.0}
+      \begin{pspicture}[showgrid=false](-1,0.7)(12,3.5)
+      \psframe[fillstyle=solid,fillcolor=gray!15,linecolor=white](-1,0.4)(12.3,3.8)
+      % q40
+      %\psframe[linecolor=white, fillstyle=crosshatch, hatchcolor=red, hatchwidth=0.6pt, hatchsep=6pt](1,3)(3,3.5)
+      \psline[linewidth=1.5pt]{<->}(0,3)(4,3)
+      \psline[linewidth=1pt]{|-|}(1,3)(3,3)
+      \psline[linecolor=blue, linewidth=1.2pt]{<-o}(0,3.3)(1,3.3)
+      \psline[linecolor=red, linewidth=1.2pt]{*-o}(1,3.5)(3,3.5)
+      \rput(1,2.7){\scriptsize 40}
+      \rput(3,2.7){\scriptsize 41}
+      \rput(-0.5,3){\scriptsize $q_{40}$}
+      % q41
+      %\psframe[linecolor=white, fillstyle=crosshatch, hatchcolor=red, hatchwidth=0.6pt, hatchsep=6pt](1,1)(3,1.5)
+      \psline[linewidth=1.5pt]{<->}(0,1)(4,1)
+      \psline[linewidth=1pt]{|-|}(1,1)(3,1)
+      \psline[linecolor=blue, linewidth=1.2pt]{<-o}(0,1.3)(1,1.3)
+      \psline[linecolor=red, linewidth=1.2pt]{*-o}(1,1.5)(3,1.5)
+      \rput(1,0.7){\scriptsize 41}
+      \rput(3,0.7){\scriptsize 42}
+      \rput(-0.5,1){\scriptsize $q_{41}$}
+      % |4q40
+      \psline[linewidth=1.5pt]{<->}(7,3)(12,3)
+      \psline[linewidth=1pt]{|-|}(8,3)(9,3)
+      \psline[linewidth=1pt]{-|}(9,3)(11,3)
+      \psline[linecolor=blue, linewidth=1.2pt]{<-o}(7,3.3)(9,3.3)
+      \psline[linecolor=red, linewidth=1.2pt]{*-o}(9,3.5)(11,3.5)
+      \rput(6.5,3){\scriptsize $_{|4}q_{40}$}
+      \rput(8,2.7){\scriptsize 40}
+      \rput(9,2.7){\scriptsize 41}
+      \rput(11,2.7){\scriptsize 45}
+      % |5q41
+      \psline[linewidth=1.5pt]{<->}(7,1)(12,1)
+      \psline[linewidth=1pt]{|-|}(8,1)(9,1)
+      \psline[linewidth=1pt]{-|}(9,1)(11,1)
+      \psline[linecolor=blue, linewidth=1.2pt]{<-o}(7,1.3)(9,1.3)
+      \psline[linecolor=red, linewidth=1.2pt]{*-o}(9,1.5)(11,1.5)
+      \rput(6.5,1){\scriptsize $_{|5}q_{41}$}
+      \rput(8,0.7){\scriptsize 41}
+      \rput(9,0.7){\scriptsize 42}
+      \rput(11,0.7){\scriptsize 47}
+      \end{pspicture}
+      \label{fig:02}
+      \caption{Probabilidades de muerte}
+      \end{figure}
+      
+      \item Sitúe sobre un gráfico las siguientes probabilidades: $_{1|}q_{40}$, $_{2|}q_{40}$, $_{3|}q_{40}$, $_{1|}q_{41}$, $_{2|}q_{41}$, $_{3|}q_{41}$.
+      
+      \begin{figure}[H]
+      \centering
+      \psset{unit=1.0}
+      \begin{pspicture}[showgrid=false](-1,0.5)(12,1.5)
+      %\psframe[fillstyle=solid,fillcolor=gray!15,linecolor=white](-1,0.4)(12.3,3.8)
+      % 1|q40
+      \psline[linewidth=1.5pt]{<->}(0,1)(4,1)
+      \psline[linewidth=1pt]{|-|}(1,1)(2,1)
+      \psline[linewidth=1pt]{-|}(2,1)(3,1)
+      \psline[linecolor=blue, linewidth=1.2pt]{<-o}(0,1.3)(2,1.3)
+      \psline[linecolor=red, linewidth=1.2pt]{*-o}(2,1.5)(3,1.5)
+      \rput(1,0.7){\scriptsize 40}
+      \rput(2,0.7){\scriptsize 41}
+      \rput(3,0.7){\scriptsize 42}
+      \rput(-0.5,1){\scriptsize $_{1|}q_{40}$}
+      % 2|q40
+      \psline[linewidth=1.5pt]{<->}(7,1)(12,1)
+      \psline[linewidth=1pt]{|-|}(8,1)(9,1)
+      \psline[linewidth=1pt]{|-|}(10,1)(11,1)
+      \psline[linecolor=blue, linewidth=1.2pt]{<-o}(7,1.3)(10,1.3)
+      \psline[linecolor=red, linewidth=1.2pt]{*-o}(10,1.5)(11,1.5)
+      \rput(8,0.7){\scriptsize 40}
+      \rput(9,0.7){\scriptsize 41}
+      \rput(10,0.7){\scriptsize 42}
+      \rput(11,0.7){\scriptsize 43}
+      \rput(6.5,1){\scriptsize $_{2|}q_{40}$}
+      \end{pspicture}
+      \end{figure}
+      
+      \item Explique la diferencia entre $_{2|}q_{40}$ y $_{1|}q_{41}$.
+      
+      $_{2|}q_{40}$: Probabilidad de fallecimiento entre las edades de 42 y 43 años para un individuo de 40 años de edad.\\
+      
+      $_{1|}q_{41}$: Probabilidad de fallecimiento entre las edades de 42 y 43 años para un individuo de 41 años de edad.\\
+      
+      La principal diferencia radica en la edad del sujeto, para el primer caso le resta sobrevivir dos periodos (años) antes de su fallecimiento, mientras que para el segundo caso únicamente le resta un periodo.
+\end{enumerate}
+
+% Ejercicio 4
+\item Calcule para un varón las siguientes probabilidades utilizando las tres aproximaciones vistas en clase:
+\begin{enumerate}
+      \item $_{0.8}p_{30}$
+      
+      {\bf\scriptsize \ttfamily Hipótesis de uniformidad}
+      \[_{0.8}p_{30} = 1- _{0.8}q_{30} = 1-0.8q_{30}=1-0.8(0.001306)=0.998955\]
+      
+      {\bf\scriptsize \ttfamily Hipótesis tanto instantáneo de mortalidad constante}
+      \[_{0.8}p_{30} = (1-q_{30})^{0.8}=(1-0.001306)^{0.8}=0.998955\]
+      
+      {\bf\scriptsize \ttfamily Hipótesis de Balducci}
+      \[_{0.8}p_{30} = \frac{1-q_{30}}{1-(1-0.8)q_{30}}=\frac{1-0.001306}{1-0.2(0.001306)}=0.998955\]
+      
+      \item $_{0.8}q_{30}$
+      
+      Tomando en cuenta los resultados del item anterior podemos obtener $_{0.8}q_{30}$ como:
+      \[ _{0.8}q_{30}= 1- _{0.8}p_{30}\]
+
+      \item $_{10.4}p_{30.2}$
+      
+      {\bf\scriptsize \ttfamily Hipótesis de uniformidad}
+      \begin{align*} 
+      _{10.4}p_{30.2} & = _{0.8}p_{30.2}\times _{9}p_{31}\times _{0.6}p_{40} \\
+                      & = \left[\frac{1-(0.2+0.8)q_{30}}{1-0.2q_{30}}\right] \times \frac{l_{40}}{l_{31}} \times \left[1-0.6q_{40}\right]\\
+                      & = \frac{1-0.001306}{1-0.2(0.001306)}\times \frac{966485.08}{979457.28} \times (1-0.6(0.001862))\\
+                      & =  0.998955 \times 0.986756 \times 0.998883\\
+                      & = 0.984624
+      \end{align*}
+      
+      {\bf\scriptsize \ttfamily Hipótesis tanto instantáneo de mortalidad constante}
+      \[_{10.4}p_{30.2} = (p_{30})^{10.4}=(1-0.001306)^{10.4}=0.986504\]
+      
+      {\bf\scriptsize \ttfamily Hipótesis de Balducci}
+      \begin{align*} 
+      _{10.4}p_{30.2} & = _{0.8}p_{30.2}\times _{9}p_{31}\times _{0.6}p_{40} \\
+                      & = \left[1-\frac{0.8q_{30}}{1-(1-08-0.2)q_{30}}\right]\times \frac{l_{40}}{l_{31}}\times \frac{1-q_{30}}{1-(1-0.6)q_{30}}\\
+                      & = \left[1-0.8(0.001306)\right]\times \frac{966485.08}{979457.28} \times \frac{1-0.001306}{1-0.4(0.001306)}\\
+                      & =  (1-0.001045) \times 0.986756 \times 0.999216\\
+                      & =  0.984952
+      \end{align*}
+      
+      \item $_{10.4}q_{30.2}$
+      
+      Tomando en cuenta los resultados del item anterior podemos obtener $_{10.4}q_{30.2}$ como:
+      \[ _{10.4}q_{30.2}= 1- _{10.4}p_{30.2}\]
+\end{enumerate}
+
+% Ejercicio 5
+\item Calcule $\mu_{33}$, $_{5}p_{30}$ y $_{7}q_{45}$ si el modelo de mortalidad se corresponde con:
+\begin{enumerate}
+      \item La ley de Moivre con parámetro $\omega=120$
+      
+      Puesto que $\mu_x=\frac{1}{w-x}$, tenemos lo siguiente:
+      \[\mu_{33}=\frac{1}{120-33}=\frac{1}{87}=0.011494\]
+      \[_{5}p_{30}=1-\frac{5}{120-30}=\frac{85}{90}=0.944444\]
+      \[_{7}q_{45}=1-_{7}p_{45}=\frac{7}{120-45}=\frac{7}{75}=0.093333\]
+      
+      \item La ley de Gompertz con parámetros $B=0.05$ y $C=1.01$
+      
+      Dado que $\mu_x=BC^x$, se tiene lo siguiente:
+      \[\mu_{33}=(0.05)(1.01)^{33}=0.069434\]
+      \[_{5}p_{30}=\exp\left[-\frac{0.05}{\ln 1.01}(1.01)^{30}(1.01^5-1)\right]=0.707877\]
+      \[_{7}q_{45}=1-_{7}p_{45}=1-\exp\left[-\frac{0.05}{\ln 1.01}(1.01)^{45}(1.01^7-1)\right]=0.432893\]
+      
+      \item La ley de Makehan con parámetros $A = 0.05$, $B = 0.01$ y $C = 1.02$
+      
+      Puesto que $\mu_x = A + BC^x$, obtenemos lo siguiente:
+      \[\mu_{33}=(0.05)+(0.01)(1.02)^{33}=0.069222\]
+      \[_{5}p_{30}=\exp\left[-(0.05)(5)-\frac{0.01}{\ln 1.02}(1.02)^{30}(1.02^5-1)\right]=0.708076\]
+      \[_{7}q_{45}= 1-_{7}p_{45}=\exp\left[-(0.05)(7)-\frac{0.01}{\ln 1.02}(1.02)^{45}(1.02^7-1)\right]=0.413184\]
+      
+      \item La ley de Weibull con parámetros $k=0.01$ y $n=0.5$
+      
+      Dado que $\mu_x = kx^n$, se tiene lo siguiente:
+      \[\mu_{33} = (0.01)(33)^{0.5}=0.057446\]
+      \[_{5}p_{30} = \exp\left[-\frac{0.01}{1.5}\left(35^{1.5}-30^{1.5}\right)\right]=0.752034\]
+      \[_{7}q_{45} = 1-_{7}p_{45}= 1- \exp\left[-\frac{0.01}{1.5}\left(52^{1.5}-45^{1.5}\right)\right] = 0.385771 \]
+\end{enumerate}
+\end{enumerate}
+
+\end{document}
