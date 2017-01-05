@@ -45,7 +45,7 @@ nEx <- function(edad, periodo, interes, genero){
 A1xn <- function(edad, omega, interes, genero){
       suma=0
       for(i in 0:(omega-1)){
-         suma = suma + utqx(edad,k,1,genero)*(1+interes)^(-periodo)   
+         suma = suma + utqx(edad,k,1,genero)*(1+interes)^(-(i+1))   
       }
       return(suma)
 }
@@ -60,4 +60,13 @@ Ax <- function(edad, periodo, interes, genero){
       return(A1xn(edad, periodo, interes, genero) + Axn1(edad, periodo, interes, genero))
 }
 
-# 
+# Renta de supervivencia
+
+ax <- function(edad, periodo, interes, genero){
+      suma=0
+      for(k in 0:(periodo-1)){
+            suma = suma + tpx(edad,k, genero)*(i+interes)^(-k)
+      }
+      retunr(suma)
+}
+
